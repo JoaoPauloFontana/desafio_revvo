@@ -149,7 +149,7 @@ curl -X DELETE http://localhost:8080/courses/1
 ## 🛠️ Estrutura do Projeto
 
 ```
-/api-cursos
+/desafio_revvo
 ├── src/
 │   ├── Controllers/
 │   ├── Database/

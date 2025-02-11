@@ -1,6 +1,6 @@
 <?php
 
-namespace RevvoApi\database;
+namespace RevvoApi\Database;
 
 use PDO;
 use PDOException;
@@ -13,7 +13,7 @@ class Database
     {
         if (self::$connection === null) {
             try {
-                $host = getenv('DB_HOST') ?: 'db';
+                $host = 'localhost';
                 $dbname = getenv('DB_NAME') ?: 'revvo_db';
                 $user = getenv('DB_USER') ?: 'revvo';
                 $password = getenv('DB_PASSWORD') ?: 'password';

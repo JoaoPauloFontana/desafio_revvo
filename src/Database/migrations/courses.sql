@@ -1,0 +1,15 @@
+CREATE TABLE courses (
+     id SERIAL PRIMARY KEY,
+     title VARCHAR(255) NOT NULL,
+     description TEXT NOT NULL,
+     link VARCHAR(255) NOT NULL,
+     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE course_images (
+   id SERIAL PRIMARY KEY,
+   course_id INT NOT NULL,
+   image_url VARCHAR(255) NOT NULL,
+   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE
+);

@@ -9,11 +9,11 @@ class Database
 {
     private static ?PDO $connection = null;
 
-    public static function connect(): PDO
+    public static function connect(?int $localConnection = null): PDO
     {
         if (self::$connection === null) {
             try {
-                $host = 'localhost';
+                $host = $localConnection ? 'localhost' : getenv('DB_HOST');
                 $dbname = getenv('DB_NAME') ?: 'revvo_db';
                 $user = getenv('DB_USER') ?: 'revvo';
                 $password = getenv('DB_PASSWORD') ?: 'password';
@@ -24,7 +24,7 @@ class Database
                 self::$connection = new PDO($dsn, $user, $password);
                 self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch (PDOException $e) {
-                die("Connection failed: " . $e->getMessage());
+                die("Conexão falhou: " . $e->getMessage());
             }
         }
         return self::$connection;

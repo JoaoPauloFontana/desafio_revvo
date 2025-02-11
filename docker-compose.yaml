@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: revvo_app
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=pgsql:host=db;dbname=revvo_db;user=revvo;password=password
+
+  db:
+    image: postgres:15
+    container_name: revvo_db
+    restart: always
+    environment:
+      POSTGRES_DB: revvo_db
+      POSTGRES_USER: revvo
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

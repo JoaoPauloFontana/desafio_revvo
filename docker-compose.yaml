@@ -14,7 +14,11 @@ services:
     depends_on:
       - db
     environment:
-      - DATABASE_URL=pgsql:host=db;dbname=revvo_db;user=revvo;password=password
+      - DB_HOST=db
+      - DB_NAME=revvo_db
+      - DB_USER=revvo
+      - DB_PASSWORD=password
+      - DB_PORT=5432
 
   db:
     image: postgres:15

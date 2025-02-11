@@ -18,7 +18,7 @@ Antes de começar, certifique-se de ter as seguintes tecnologias instaladas:
 ### 1️⃣ Clonar o Repositório
 ```sh
 git clone https://github.com/JoaoPauloFontana/desafio_revvo.git
-cd api-cursos
+cd desafio_revvo
 ```
 
 ### 2️⃣ Subir os containers Docker

@@ -27,18 +27,18 @@ class CourseService
 
     public function create(array $data): array
     {
-        $courseId = $this->courseRepository->create($data);
-        if (!$courseId) {
-            return ['success' => false, 'message' => 'Erro ao criar o curso.'];
+        $response = $this->courseRepository->create($data);
+        if (!$response['success']) {
+            return $response;
         }
 
         if (!empty($data['images']) && is_array($data['images'])) {
             foreach ($data['images'] as $imageBase64) {
-                $this->saveImage($courseId, $imageBase64);
+                $this->saveImage($response['id'], $imageBase64);
             }
         }
 
-        return ['success' => true, 'message' => 'Curso criado com sucesso.', 'data' => ['id' => $courseId]];
+        return $response;
     }
 
     public function view(int $id): array

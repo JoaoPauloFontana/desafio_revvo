@@ -81,9 +81,9 @@ curl -X POST http://localhost:8080/courses \
 **Resposta:**
 ```json
 {
-    "success": true,
-    "message": "Curso criado com sucesso.",
-    "data": {"id": 1}
+   "success": true,
+   "message": "Curso criado com sucesso.",
+   "id": 7
 }
 ```
 

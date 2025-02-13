@@ -18,11 +18,9 @@ class CourseRepository
     public function list(): array
     {
         try {
-            $baseUrl = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . '/';
-
             $stmt = $this->db->query("SELECT c.*, 
-                (SELECT CONCAT('$baseUrl', image_url) FROM course_images ci WHERE ci.course_id = c.id ORDER BY ci.id ASC LIMIT 1) AS first_image 
-                FROM courses c");
+            (SELECT image_url FROM course_images ci WHERE ci.course_id = c.id ORDER BY ci.id ASC LIMIT 1) AS first_image 
+            FROM courses c");
 
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {

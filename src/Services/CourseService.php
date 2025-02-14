@@ -97,7 +97,10 @@ class CourseService
         $uploadDir = __DIR__ . '/../../public/uploads/';
 
         if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0777, true);
+            if (!mkdir($uploadDir, 0777, true) && !is_dir($uploadDir)) {
+                error_log("Erro: Não foi possível criar o diretório de upload: " . $uploadDir);
+                return;
+            }
         }
 
         $imagePath = $uploadDir . uniqid('course_', true) . '.' . $extension;
